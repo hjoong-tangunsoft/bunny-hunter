@@ -8,6 +8,31 @@ Bunny Hunter is a small collection of Python tools and agents that work together
 - `01-search-list` – scraper that queries [당근마켓](https://www.daangn.com/) for past or current listings.  Results are written as JSON to stdout.  It expects environment variables such as `ITEM_NAME`, `MODE` (`ALL` or `CURRENT`) and an optional `REGION`.
 - `02-gpt-oss-20b-ollama` – forwards a prompt to an Ollama instance running the `gpt-oss:20b` model.  The prompt is supplied via the `PROMPT` environment variable and the response is emitted as JSON.
 
+## JSON Formatting Features
+
+Bunny Hunter provides exceptionally clean JSON output through sophisticated formatting and parsing capabilities:
+
+### Key Features
+- **Korean character preservation** with `ensure_ascii=False`
+- **Robust JSON extraction** from mixed logs and output  
+- **Safe parsing** with comprehensive error handling
+- **Consistent response structure** across all components
+- **Real-time output** with `flush=True`
+
+### Usage Examples
+```python
+# Using the centralized JSON utilities
+from json_utils import format_json_clean, extract_json_from_mixed_output
+
+# Clean formatting with Korean support
+clean_json = format_json_clean({"메시지": "안녕하세요"}, for_development=True)
+
+# Extract JSON from mixed container output
+parsed_data = extract_json_from_mixed_output(container_stdout)
+```
+
+See [`JSON_FORMATTING_GUIDE.md`](JSON_FORMATTING_GUIDE.md) for detailed documentation and [`json_utils.py`](00-main-agent/json_utils.py) for the centralized utility functions.
+
 ## Requirements
 
 - Python 3.10+ (repository tested with Python 3.12)
